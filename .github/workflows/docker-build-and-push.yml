@@ -28,7 +28,7 @@ jobs:
             - name: Build Docker image
               run: |
                   TAG=${GITHUB_REF#refs/tags/}
-                  docker build --build-arg -t ghcr.io/${{ github.repository_owner }}/es2025-s17-hu-r2-backend:$TAG -t ghcr.io/es2025-s17-hu-r2-backend:latest .
+                  docker build -t ghcr.io/${{ github.repository_owner }}/es2025-s17-hu-r2-backend:$TAG -t ghcr.io/es2025-s17-hu-r2-backend:latest .
 
             - name: Push Docker image
               run: |
