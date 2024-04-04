@@ -32,4 +32,4 @@ jobs:
                   context: .
                   file: ./Dockerfile
                   push: true
-                  tags: ghcr.io/${{ github.repository }}/es2025-s17-hu-r2-backend:${{ steps.tag_name.outputs.TAG }}
+                  tags: ghcr.io/${{ github.repository }}/es2025-s17-hu-r2-backend:latest,ghcr.io/${{ github.repository }}/es2025-s17-hu-r2-backend:${{ steps.tag_name.outputs.TAG }}
