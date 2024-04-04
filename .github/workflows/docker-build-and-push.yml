@@ -21,18 +21,15 @@ jobs:
                   registry: ghcr.io
                   username: ${{ github.repository_owner }}
                   password: ${{ secrets.GITHUB_TOKEN }}
+
             - name: Extract tag name
               id: tag_name
               run: echo ::set-output name=TAG::${GITHUB_REF#refs/tags/}
 
-            - name: Build Docker image
-              run: |
-                  TAG=${GITHUB_REF#refs/tags/}
-                  docker build -t ghcr.io/${{ github.repository_owner }}/es2025-s17-hu-r2-backend:$TAG -t ghcr.io/es2025-s17-hu-r2-backend:latest .
-
-            - name: Push Docker image
-              run: |
-                  TAG=${GITHUB_REF#refs/tags/}
-                  echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
-                  docker push ghcr.io/${{ github.repository_owner }}/es2025-s17-hu-r2-backend:$TAG
-                  docker push ghcr.io/${{ github.repository_owner }}/es2025-s17-hu-r2-backend:latest
+            - name: Build and Push Docker image
+              uses: docker/build-push-action@v2
+              with:
+                  context: .
+                  file: ./Dockerfile
+                  push: true
+                  tags: ghcr.io/${{ github.repository }}/es2025-s17-hu-r2-backend:${{ steps.tag_name.outputs.TAG }}
