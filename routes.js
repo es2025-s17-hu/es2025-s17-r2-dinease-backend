@@ -220,7 +220,10 @@ router.post("/reset-db", async (req, res) => {
 			.split(";")
 			.filter(Boolean)
 
+		console.log(dump);
+
 		for (const query of dump) {
+			console.log(query);
 			await db.query(query.trim() + ";")
 		}
 		console.log("Database reset")
