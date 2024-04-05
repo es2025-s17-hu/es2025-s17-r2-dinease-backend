@@ -29,20 +29,21 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `plans` (
   `id` int NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `monthlyFee` decimal(10,2) DEFAULT NULL,
   `yearlyFee` decimal(10,2) DEFAULT NULL,
-  `description` text
+  `maxNumberOfRestaurants` int NOT NULL DEFAULT '1',
+  `description` text COLLATE utf8mb4_unicode_ci
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `plans`
 --
 
-INSERT INTO `plans` (`id`, `name`, `monthlyFee`, `yearlyFee`, `description`) VALUES
-(1, 'free', 0.00, 0.00, 'Ideal for restaurant owners who operate a single location with low traffic. This plan offers access to basic features suitable for managing minimal operational demands.'),
-(2, 'professional', 50.00, 540.00, 'Designed for owners managing more than one restaurant with medium traffic. This plan provides advanced features and increased limits to efficiently handle greater operational complexity.'),
-(3, 'enterprise', 100.00, 1080.00, 'Tailored for large restaurant chains, offering customized solutions that cater to high traffic needs. This plan ensures scalability, dedicated support, and the most comprehensive set of features.');
+INSERT INTO `plans` (`id`, `name`, `monthlyFee`, `yearlyFee`, `maxNumberOfRestaurants`, `description`) VALUES
+(1, 'free', 0.00, 0.00, 1, 'Ideal for restaurant owners who operate a single location with low traffic. This plan offers access to basic features suitable for managing minimal operational demands.'),
+(2, 'professional', 50.00, 540.00, 3, 'Designed for owners managing more than one restaurant with medium traffic. This plan provides advanced features and increased limits to efficiently handle greater operational complexity.'),
+(3, 'enterprise', 100.00, 1080.00, 100, 'Tailored for large restaurant chains, offering customized solutions that cater to high traffic needs. This plan ensures scalability, dedicated support, and the most comprehensive set of features.');
 
 -- --------------------------------------------------------
 

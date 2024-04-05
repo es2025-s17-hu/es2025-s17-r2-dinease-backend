@@ -32,19 +32,28 @@ router.put("/plans/:id", async (req, res) => {
 		if (plan.length === 0) {
 			return res.status(404).send({ error: "Plan not found" })
 		}
-		const { name, monthlyFee, yearlyFee, description } = req.body
+		const {
+			name,
+			monthlyFee,
+			yearlyFee,
+			maxNumberOfRestaurants,
+			description,
+		} = req.body
 		const newPlan = {
 			name: name || plan[0].name,
 			monthlyFee: monthlyFee || plan[0].monthlyFee,
 			yearlyFee: yearlyFee || plan[0].yearlyFee,
+			maxNumberOfRestaurants:
+				maxNumberOfRestaurants || plan[0].maxNumberOfRestaurants,
 			description: description || plan[0].description,
 		}
 		await db.execute(
-			"UPDATE `plans` SET `name` = ?, `monthlyFee` = ?, `yearlyFee` = ?, `description` = ? WHERE `id` = ?;",
+			"UPDATE `plans` SET `name` = ?, `monthlyFee` = ?, `yearlyFee` = ?, `maxNumberOfRestaurants` = ?, `description` = ? WHERE `id` = ?;",
 			[
 				newPlan.name,
 				newPlan.monthlyFee,
 				newPlan.yearlyFee,
+				newPlan.maxNumberOfRestaurants,
 				newPlan.description,
 				id,
 			]
@@ -207,8 +216,8 @@ router.post("/reset-db", async (req, res) => {
 		await db.execute("DROP TABLE IF EXISTS `users`")
 		await db.execute("SET FOREIGN_KEY_CHECKS = 1;")
 
-		console.log("Loading dump from:");
-		console.log(process.cwd() + "/dump.sql");
+		console.log("Loading dump from:")
+		console.log(process.cwd() + "/dump.sql")
 
 		//  load dump.sql and run it
 		const dump = fs
@@ -220,14 +229,11 @@ router.post("/reset-db", async (req, res) => {
 			.split(";")
 			.filter(Boolean)
 
-		console.log(dump);
-
 		for (const query of dump) {
-			console.log(query);
 			await db.query(query.trim() + ";")
 		}
-		console.log("Database reset")
-		res.send({ message: "Database reset" })
+		console.log("The database reset was successful")
+		res.send({ message: "The database reset was successful" })
 	} catch (error) {
 		console.error(error)
 		res.status(500).send({ error: "Database reset failed" })
