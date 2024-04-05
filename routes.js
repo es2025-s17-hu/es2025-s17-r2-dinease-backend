@@ -213,7 +213,7 @@ router.post("/reset-db", async (req, res) => {
 		//  load dump.sql and run it
 		const dump = fs
 			.readFileSync(process.cwd() + "/dump.sql", "utf-8")
-			.split("\r\n")
+			.split("\n")
 			.filter(Boolean)
 			.filter((line) => !line.startsWith("--"))
 			.join(" ")
