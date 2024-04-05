@@ -207,6 +207,9 @@ router.post("/reset-db", async (req, res) => {
 		await db.execute("DROP TABLE IF EXISTS `users`")
 		await db.execute("SET FOREIGN_KEY_CHECKS = 1;")
 
+		console.log("Loading dump from:");
+		console.log(process.cwd() + "/dump.sql");
+
 		//  load dump.sql and run it
 		const dump = fs
 			.readFileSync(process.cwd() + "/dump.sql", "utf-8")
