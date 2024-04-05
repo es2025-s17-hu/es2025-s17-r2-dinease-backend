@@ -52,34 +52,37 @@ INSERT INTO `plans` (`id`, `name`, `monthlyFee`, `yearlyFee`, `description`) VAL
 
 CREATE TABLE `restaurants` (
   `id` int NOT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `city` varchar(255) DEFAULT NULL,
-  `cuisine` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  `zipCode` varchar(10) DEFAULT NULL,
-  `countryCode` char(2) DEFAULT NULL
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `cuisine` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `zipCode` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `countryCode` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `description` text COLLATE utf8mb4_unicode_ci,
+  `imageUrl` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- A tábla adatainak kiíratása `restaurants`
 --
 
-INSERT INTO `restaurants` (`id`, `name`, `city`, `cuisine`, `address`, `zipCode`, `countryCode`) VALUES
-(1, 'Szép Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7.', '1014', 'HU'),
-(2, 'La Piața', 'Bucharest', 'Romanian', 'Strada Smardan 30.', '030167', 'RO'),
-(3, 'Gospoda Krakowska', 'Warsaw', 'Polish', 'ul. Foksal 17', '00-372', 'PL'),
-(4, 'Fishermans Hut', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU'),
-(5, 'Casa del Gusto', 'Bucharest', 'Italian', 'Strada Smardan 30', '030167', 'RO'),
-(6, 'Kék Duna Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7', '1014', 'HU'),
-(7, 'Brânza și Mămăligă', 'Cluj-Napoca', 'Romanian', 'Strada Universității 1', '400091', 'RO'),
-(8, 'Czerwona Karczma', 'Krakow', 'Polish', 'Rynek Główny 23', '31-008', 'PL'),
-(9, 'Móló Rózsa Étterem', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU'),
-(10, 'Trattoria Bella', 'Varna', 'Italian', 'bul. Knyaz Boris I 65', '9002', 'BG'),
-(11, 'Paradicsom Étterem', 'Szeged', 'Hungarian', 'Dugonics tér 12.', '6720', 'HU'),
-(12, 'Sarmale Bistro', 'Timisoara', 'Romanian', 'Piața Unirii 5', '300035', 'RO'),
-(13, 'Smaczne Pierogi', 'Wrocław', 'Polish', 'Rynek 9/11', '50-101', 'PL'),
-(14, 'Halász Fogadó', 'Székesfehérvár', 'Seafood', 'Fő u. 17.', '8000', 'HU'),
-(15, 'Vivace Ristorante', 'Bucharest', 'Italian', 'Strada Smardan 30', '030167', 'RO');
+INSERT INTO `restaurants` (`id`, `name`, `city`, `cuisine`, `address`, `zipCode`, `countryCode`, `description`, `imageUrl`) VALUES
+(1, 'Szép Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7.', '1014', 'HU', 'A traditional Hungarian spot offering local delicacies and an authentic dining experience.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant1.png'),
+(2, 'La Piața', 'Bucharest', 'Romanian', 'Strada Smardan 30.', '030167', 'RO', 'Discover a fusion of Europes flavors at La Piața, set in the heart of the city. Savor dishes from locally-sourced ingredients in our cozy bistro ambiance.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant2.png'),
+(3, 'Gospoda Krakowska', 'Warsaw', 'Polish', 'ul. Foksal 17', '00-372', 'PL', 'Indulge in classic Polish recipes in a quaint setting, reminiscent of Warsaws charm.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant3.png'),
+(4, 'Fishermans Hut', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU', 'A haven for seafood lovers, offering fresh catches in a delightful riverside setting.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant1.png'),
+(5, 'Casa del Gusto', 'Bucharest', 'Italian', 'Strada Smardan 30', '030167', 'RO', 'Relive the romance of Italy with dishes crafted with passion and flair.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant2.png'),
+(6, 'Kék Duna Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7', '1014', 'HU', 'Set on the banks of the Danube, enjoy meals that resonate with the citys heartbeat.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant3.png'),
+(7, 'Brânza și Mămăligă', 'Cluj-Napoca', 'Romanian', 'Strada Universității 1', '400091', 'RO', 'A cozy spot that captures the essence of Transylvania, with dishes to match.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant1.png'),
+(8, 'Czerwona Karczma', 'Krakow', 'Polish', 'Rynek Główny 23', '31-008', 'PL', 'Tucked away in Krakow, this eatery showcases Polands culinary traditions.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant2.png'),
+(9, 'Móló Rózsa Étterem', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU', 'With a stunning view, indulge in seafood delicacies that tantalize the taste buds.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant3.png'),
+(10, 'Trattoria Bella', 'Varna', 'Italian', 'bul. Knyaz Boris I 65', '9002', 'BG', 'Experience the beauty of Italian cuisine in a setting that complements every dish.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant1.png'),
+(11, 'Paradicsom Étterem', 'Szeged', 'Hungarian', 'Dugonics tér 12.', '6720', 'HU', 'Take a culinary journey through Hungarys diverse and flavorful heritage.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant2.png'),
+(12, 'Sarmale Bistro', 'Timisoara', 'Romanian', 'Piața Unirii 5', '300035', 'RO', 'Experience Romanias culinary heart at Sarmale Bistro. Savor classics with a modern touch in our intimate, authentic ambiance. Celebrate timeless tradition.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant3.png'),
+(13, 'Smaczne Pierogi', 'Wrocław', 'Polish', 'Rynek 9/11', '50-101', 'PL', 'Home to Polands favorites, every bite is a reminder of traditional Polish hospitality.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant1.png'),
+(14, 'Halász Fogadó', 'Székesfehérvár', 'Seafood', 'Fő u. 17.', '8000', 'HU', 'Immerse in Eastern European authenticity at Halász Fogadö. Relish traditional dishes amid an atmosphere rich in charm and history. Join us for a timeless culinary experience.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant2.png'),
+(15, 'Vivace Ristorante', 'Bucharest', 'Italian', 'Strada Smardan 30', '030167', 'RO', 'Savor Italys finest dishes in an ambiance thats as vibrant as its food.', 'https://gitea.dineease.com/httpadmin/es2025-s17-hu-r2/raw/branch/main/assets/images/Restaurant3.png');
+
 
 -- --------------------------------------------------------
 
