@@ -91,7 +91,7 @@ router.delete("/reviews/:id", async (req, res) => {
 router.get("/users", async (req, res) => {
 	try {
 		const [results] = await db.execute(
-			"SELECT id, firstName, lastName FROM `users`;"
+			"SELECT id, firstName, lastName, email, isActive FROM `users`;"
 		)
 		res.send(results)
 	} catch (error) {
@@ -137,6 +137,26 @@ router.put("/users/:id", async (req, res) => {
 	}
 })
 
+router.get("/restaurants", async (req, res) => {
+	try {
+		const [restaurants] = await db.execute(
+			"SELECT id, name, city, cuisine, address, zipCode, countryCode FROM `restaurants`;"
+		)
+		const [reviews] = await db.execute(
+			"SELECT restaurantId, AVG(rating) AS rating FROM `reviews` GROUP BY restaurantId;"
+		)
+		restaurants.forEach((restaurant) => {
+			const { id } = restaurant
+			const rating = reviews.find((review) => review.restaurantId === id)
+			restaurant.rating = rating ? rating.rating : null
+		})
+		res.send(restaurants)
+	} catch (error) {
+		console.error(error)
+		res.status(500).send({ error: "Restaurants not found" })
+	}
+})
+
 router.post("/registration", async (req, res) => {
 	try {
 		const { restaurants, firstName, lastName, email, password, planId } =
@@ -167,7 +187,11 @@ router.post("/registration", async (req, res) => {
 		res.status(201).send({ message: "Registration successful" })
 	} catch (error) {
 		console.error(error)
-		res.status(500).send({ error: "Registration failed" })
+		const errMsg =
+			error.code === "ER_DUP_ENTRY"
+				? "Username already exists"
+				: "Registration failed"
+		res.status(500).send({ error: errMsg })
 	}
 })
 

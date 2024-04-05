@@ -1,3 +1,4 @@
 {
-	"editor.formatOnSave": true
+	"editor.formatOnSave": true,
+	"accessibility.signals.sounds.volume": 0
 }

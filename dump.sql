@@ -68,7 +68,7 @@ INSERT INTO `restaurants` (`id`, `name`, `city`, `cuisine`, `address`, `zipCode`
 (1, 'Szép Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7.', '1014', 'HU'),
 (2, 'La Piața', 'Bucharest', 'Romanian', 'Strada Smardan 30.', '030167', 'RO'),
 (3, 'Gospoda Krakowska', 'Warsaw', 'Polish', 'ul. Foksal 17', '00-372', 'PL'),
-(4, 'Fisherman\'s Hut', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU'),
+(4, 'Fishermans Hut', 'Budapest', 'Seafood', 'Szentháromság u. 7.', '1014', 'HU'),
 (5, 'Casa del Gusto', 'Bucharest', 'Italian', 'Strada Smardan 30', '030167', 'RO'),
 (6, 'Kék Duna Étterem', 'Budapest', 'Hungarian', 'Szentháromság u. 7', '1014', 'HU'),
 (7, 'Brânza și Mămăligă', 'Cluj-Napoca', 'Romanian', 'Strada Universității 1', '400091', 'RO'),
@@ -92,7 +92,8 @@ CREATE TABLE `reviews` (
   `restaurantId` int DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `rating` decimal(3,1) DEFAULT NULL,
-  `comment` text
+  `comment` text,
+  `createdAt` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
