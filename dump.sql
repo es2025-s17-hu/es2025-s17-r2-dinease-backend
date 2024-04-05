@@ -58,7 +58,7 @@ CREATE TABLE `restaurants` (
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `zipCode` varchar(10) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `countryCode` char(2) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `imageUrl` varchar(500) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
