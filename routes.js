@@ -149,7 +149,7 @@ router.put("/users/:id", async (req, res) => {
 router.get("/restaurants", async (req, res) => {
 	try {
 		const [restaurants] = await db.execute(
-			"SELECT id, name, city, cuisine, address, zipCode, countryCode FROM `restaurants`;"
+			"SELECT id, name, city, cuisine, address, zipCode, countryCode, description, imageUrl FROM `restaurants`;"
 		)
 		const [reviews] = await db.execute(
 			"SELECT restaurantId, AVG(rating) AS rating FROM `reviews` GROUP BY restaurantId;"
