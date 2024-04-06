@@ -209,13 +209,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `firstName`, `lastName`, `email`, `password`, `roleId`, `planId`, `annualPayment`) VALUES
 (1, 'John', 'Doe', 'john.doe@example.com', '$2b$10$DPXEXQTLJwHgP3LT8RWC8.aX7KcRbKv.A1yC8E5ARuB62vpcKOypG', 2, 1, 1),
-(2, 'Jane', 'Doe', 'jane.doe@example.com', '$2b$10$N2xnrqd3/ZMc6cO1XYnRTekFiqZLQ4wZNIMUAur8thdcrcnXw7paa', 2, 1, 2),
+(2, 'Jane', 'Doe', 'jane.doe@example.com', '$2b$10$N2xnrqd3/ZMc6cO1XYnRTekFiqZLQ4wZNIMUAur8thdcrcnXw7paa', 2, 1, 0),
 (3, 'Michael', 'Smith', 'michael.smith@example.com', '$2b$10$4uwSF.Buk3MRXXC34.Yzhe8tOd1sSglnbavl4ABtfp5C7NLwfeSGe', 1, NULL, NULL),
-(4, 'Sarah', 'Brown', 'sarah.brown@example.com', '$2b$10$rvjOqOsw2dQcu2MkHKTyuuuBkD/OcLcInu0v3DUDGEshh8PjenfLC', 2, 0, 1),
+(4, 'Sarah', 'Brown', 'sarah.brown@example.com', '$2b$10$rvjOqOsw2dQcu2MkHKTyuuuBkD/OcLcInu0v3DUDGEshh8PjenfLC', 2, 1, 1),
 (5, 'Brian', 'Davis', 'brian.davis@example.com', '$2b$10$qupXOd5wn0Oc0ndVyVlI4.0HwRusTHGXrC4tiehNUXuOBcJ3RxOOm', 3, NULL, NULL),
-(6, 'Lisa', 'Wilson', 'lisa.wilson@example.com', '$2b$10$Unnx0VQ1cVIUiyixN0LbqOpvmMernzdvKaPOqVdypXbbG.JCDmf.K', 2, 0, 3),
+(6, 'Lisa', 'Wilson', 'lisa.wilson@example.com', '$2b$10$Unnx0VQ1cVIUiyixN0LbqOpvmMernzdvKaPOqVdypXbbG.JCDmf.K', 2, 3, 1),
 (7, 'James', 'Garcia', 'james.garcia@example.com', '$2b$10$UNuvnRK1.TEu80wvVIsVVuTgGGWfZ9LmuMMJr/NNWwuqNiQbxjOt6', 1, NULL, NULL),
-(8, 'Linda', 'Martinez', 'linda.martinez@example.com', '$2b$10$p7ugUiYQltgFPJTR9hMm2uXN9kcl6Ds0nC3BU25PFj21JDuoqIKF.', 2, 1, 1),
+(8, 'Linda', 'Martinez', 'linda.martinez@example.com', '$2b$10$p7ugUiYQltgFPJTR9hMm2uXN9kcl6Ds0nC3BU25PFj21JDuoqIKF.', 2, 2, 0),
 (9, 'Robert', 'Robinson', 'robert.robinson@example.com', '$2b$10$myokXGZNH7oowxKqVHRrHeeI2hIxxCnC9Jmwxl8CTHOM7Uoq6mqNS', 3, NULL, NULL),
 (10, 'Patricia', 'Clark', 'patricia.clark@example.com', '$2b$10$.AAOzD5AgiRNepvtRi0M0uc4gzuYHoanvNtOzYfYidw5tFkTrMXYa', 3, NULL, NULL);
 
