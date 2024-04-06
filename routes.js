@@ -100,7 +100,7 @@ router.delete("/reviews/:id", async (req, res) => {
 router.get("/users", async (req, res) => {
 	try {
 		const [results] = await db.execute(
-			"SELECT id, firstName, lastName, email, isActive FROM `users`;"
+			"SELECT id, firstName, lastName, email, isActive, annualPayment FROM `users`;"
 		)
 		res.send(results)
 	} catch (error) {
@@ -113,10 +113,11 @@ router.get("/users/:id", async (req, res) => {
 	try {
 		const { id } = req.params
 		const [results] = await db.execute(
-			"SELECT id, firstName, lastName, email, roleId, planId, isActive FROM `users` WHERE `id` = ?;",
+			"SELECT id, firstName, lastName, email, roleId, planId, isActive, annualPayment FROM `users` WHERE `id` = ?;",
 			[id]
 		)
 		results[0].isActive = !!results[0].isActive
+		results[0].annualPayment = !!results[0].annualPayment
 		res.send(results[0])
 	} catch (error) {
 		console.error(error)
@@ -126,7 +127,7 @@ router.get("/users/:id", async (req, res) => {
 
 router.put("/users/:id", async (req, res) => {
 	try {
-		const { isActive } = req.body
+		const { isActive, annualPayment } = req.body
 		const { id } = req.params
 		const [user] = await db.execute(
 			"SELECT * FROM `users` WHERE `id` = ?;",
@@ -135,11 +136,12 @@ router.put("/users/:id", async (req, res) => {
 		if (user.length === 0) {
 			return res.status(404).send({ error: "User not found" })
 		}
-		await db.execute("UPDATE `users` SET `isActive` = ? WHERE `id` = ?;", [
+		await db.execute("UPDATE `users` SET `isActive` = ?, `annualPayment` = ?, WHERE `id` = ?;", [
 			isActive,
+			annualPayment || false,
 			id,
 		])
-		res.send({ id, isActive })
+		res.send({ id, isActive, annualPayment })
 	} catch (error) {
 		console.error(error)
 		res.status(500).send({ error: "User activation failed" })
@@ -168,14 +170,14 @@ router.get("/restaurants", async (req, res) => {
 
 router.post("/registration", async (req, res) => {
 	try {
-		const { restaurants, firstName, lastName, email, password, planId } =
+		const { restaurants, firstName, lastName, email, password, planId, annualPayment } =
 			req.body
 
 		const hash = bcrypt.hashSync(password, 10)
 
 		const [results] = await db.execute(
-			"INSERT INTO `users` (`firstName`, `lastName`, `email`, `password`, `roleId`, `planId`, `isActive`) VALUES (?, ?, ?, ?, 2, ?, 1);",
-			[firstName, lastName, email, hash, planId]
+			"INSERT INTO `users` (`firstName`, `lastName`, `email`, `password`, `roleId`, `planId`, `isActive`, `annualPayment`) VALUES (?, ?, ?, ?, 2, ?, 1, ?);",
+			[firstName, lastName, email, hash, planId, annualPayment]
 		)
 		const userId = results.insertId
 
